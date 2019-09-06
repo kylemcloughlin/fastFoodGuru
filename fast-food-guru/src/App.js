@@ -14,7 +14,9 @@ class App extends Component {
   }
   user = (message) => {
     console.log("app", message);
-    
+    this.setState({
+      loggedIn: true
+    })
   } 
   password = () => {
 
@@ -26,7 +28,10 @@ render() {
       <header className="App-header">
       <h1>Fast Food Guru</h1>
         <p>
-          <Login user={this.user}/>
+          {
+            this.state.loggedIn ?
+           ( <a>hit</a>) : ( <Login user={this.user}/ > )
+          }
         </p>
        
       </header>
