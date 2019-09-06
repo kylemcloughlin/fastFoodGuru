@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import Login from './login.jsx';
 import './App.css';
+import MapComponent from './mapComponent.jsx';
 
 class App extends Component {
   constructor(props) {;
@@ -18,22 +19,27 @@ class App extends Component {
       loggedIn: true
     })
   } 
-  password = () => {
-
+  _writeReview = (e) => {
+  
+    console.log('hit')
   }
+
+
 render() {
 
   return (
     <div className="App">
       <header className="App-header">
       <h1>Fast Food Guru</h1>
-        <p>
+        {/* <p>
           {
             this.state.loggedIn ?
-           ( <a>hit</a>) : ( <Login user={this.user}/ > )
+           (<Map/>) : ( <Login user={this.user}/ > )
           }
-        </p>
-       
+        </p> */}
+       <button onClick={this._writeReview}>button</button>
+       {/* <MapComponent/> */}
+
       </header>
     </div>
   );

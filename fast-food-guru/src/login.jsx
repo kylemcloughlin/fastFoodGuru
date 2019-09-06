@@ -28,7 +28,9 @@ class Login extends Component {
       
     }
   }
-  
+  _register = () => {
+    console.log('hit')
+  }
   componentDidMount() {
     console.log('componet did mount');
   
@@ -45,6 +47,7 @@ class Login extends Component {
           <input type="password" name="pw"className="password" onKeyDown={this._handlePassword}>
           </input>
        </form>
+        <button onClick={this._register}>register</button>
       </div>
     )
  
