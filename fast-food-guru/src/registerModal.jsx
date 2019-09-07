@@ -46,6 +46,17 @@ class RegisterModal extends React.Component {
   componentWillMount() {
     Modal.setAppElement('body')
   }
+
+  _addUserName = () => {
+
+  }
+  _addRegion = () => {
+
+  }
+
+  _addPassword = () => {
+    
+  }
   render() {
     return (
       <div>
@@ -62,10 +73,10 @@ class RegisterModal extends React.Component {
           <button onClick={this.closeModal}>close</button>
           
           <form>
-            <input placeholder="userName"/>
+            <input placeholder="userName" onChange={this._addUserName}/>
             <input placeholder="region" />
             <input placeholder="email"/>
-
+            <button>submit</button>
 
           </form>
         </Modal>
