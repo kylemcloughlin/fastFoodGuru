@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-
+import Modal from 'react-modal';
+import RegisterModal from './registerModal.jsx'
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      modalIsOpen: false
     }
   }
   _handleUserName = (event) => {
@@ -29,16 +31,20 @@ class Login extends Component {
     }
   }
   _register = () => {
-    console.log('hit')
+   console.log('hit')
+    this.setState({ modalIsOpen: true });
+  }
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
   }
   componentDidMount() {
-    console.log('componet did mount');
-  
+    console.log('component did mount');
+    
   }
   render() {
     console.log('login render')
     return (
-      <div>
+      <body>
        <form>
        <h2>User Name:</h2>
           <input className="user" onKeyDown={this._handleUserName} >
@@ -48,10 +54,14 @@ class Login extends Component {
           </input>
        </form>
         <button onClick={this._register}>register</button>
-      </div>
+        <RegisterModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this.closeModal}/>
+      </body>
     )
- 
+    
   }
 }
+// isOpen={this.state.modalIsOpen}
+// onAfterOpen={this.afterOpenModal}
+// onRequestClose={this.closeModal}
 
 export default Login;

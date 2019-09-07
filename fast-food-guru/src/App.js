@@ -4,7 +4,7 @@ import React, {
 import Login from './login.jsx';
 import './App.css';
 import MapComponent from './mapComponent.jsx';
-
+import UserPage from './userPage.jsx'
 class App extends Component {
   constructor(props) {;
     super(props)
@@ -31,14 +31,12 @@ render() {
     <div className="App">
       <header className="App-header">
       <h1>Fast Food Guru</h1>
-        {/* <p>
-          {
-            this.state.loggedIn ?
-           (<Map/>) : ( <Login user={this.user}/ > )
-          }
-        </p> */}
-       <button onClick={this._writeReview}>button</button>
-       {/* <MapComponent/> */}
+        <p>
+          { this.state.loggedIn ?
+           (<UserPage/>) : ( <Login user={this.user}/> ) }
+        </p>
+      
+    
 
       </header>
     </div>
