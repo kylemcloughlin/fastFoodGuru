@@ -23,8 +23,33 @@ class App extends Component {
   
     console.log('hit')
   }
+_sendReg = (obj) => {
+  console.log("app", obj);
+}
+_sendReview = (obj) => {
+  console.log("app", obj);
+}
+ fetchData = () => {
+   fetch('/reviews/index')
+     .then(response => {
+       if (response.ok) {
+         response.json().then(data => {
+           console.log(data)
+         })
 
+       }
+     })
+     .catch(err => console.log('parsing failed', err))
 
+ }
+ componentDidUpdate() {
+  console.log("hit cdm") 
+  if (this.state.loggedIn === true) {
+  console.log("hit if")
+     
+    this.fetchData();
+   }
+ }
 render() {
 
   return (
@@ -33,7 +58,7 @@ render() {
       <h1>Fast Food Guru</h1>
         <p>
           { this.state.loggedIn ?
-           (<UserPage/>) : ( <Login user={this.user}/> ) }
+           (<UserPage sendToBack={this._sendReview}/>) : ( <Login user={this.user} sendToBack={this._sendReg}/> ) }
         </p>
       
     

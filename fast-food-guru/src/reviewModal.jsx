@@ -20,9 +20,11 @@ class ReviewModal extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   modalIsOpen: this.props.open
-    // };
+    this.state = {
+      restaurant: null,
+      address: null,
+      review: null
+    };
 
     // this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -43,6 +45,45 @@ class ReviewModal extends React.Component {
     this.props.modalIsClosed()
 
   }
+  _handleAddress = (e) => {
+    this.setState({
+      address: e.target.value
+    })
+  }
+  _handleRestaurant = (e) => {
+    this.setState({
+      restaurant: e.target.value
+    })
+  }
+
+  _handleText = (e) => {
+    this.setState({
+      review: e.target.value
+    })
+  }
+
+  _handleSubmit = (e) => {
+    let output = {
+      address: this.state.address,
+      restaurant: this.state.restaurant,
+      review: this.state.review
+    }
+    window.fetch('review/create', {
+      method: 'POST',
+      body: JSON.stringify(
+        output
+      ),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(resp => resp.json())
+      .then((json) => {
+        console.log(json)
+      })
+      .catch(err => console.log(err))
+    console.log(output)
+    this.props.confirmReview(output)
+    this.props.modalIsClosed();
+  }
   componentWillMount() {
     Modal.setAppElement('body')
   }
@@ -61,9 +102,10 @@ class ReviewModal extends React.Component {
           <h2 ref={subtitle => this.subtitle = subtitle}>Write Review</h2>
           <button onClick={this.closeModal}>close</button>
           <form>
-            <input name="restaurant" placeholder="restarant"/>
-            <input name="" placeholder="Address"/>
-            <textarea placeholder="Review"></textarea>
+            <input name="restaurant" placeholder="restaurant" onChange={this._handleRestaurant}/>
+            <input name="" placeholder="Address" onChange={this._handleAddress}/>
+            <textarea placeholder="Review" onChange={this._handleText}></textarea>
+            <a onClick={this._handleSubmit}>Submit</a>
           </form>
         </Modal>
       </div>

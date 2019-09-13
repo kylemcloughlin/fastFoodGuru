@@ -20,9 +20,13 @@ class RegisterModal extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   modalIsOpen: this.props.open
-    // };
+    this.state = {
+      userName: null,
+      region: null,
+      email: null,
+      password: null,
+      confirmed: null
+    };
 
     // this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -47,15 +51,55 @@ class RegisterModal extends React.Component {
     Modal.setAppElement('body')
   }
 
-  _addUserName = () => {
-
+  _addUserName = (e) => {
+    console.log(e.target.value)
+    this.setState({
+      userName: e.target.value
+    })
   }
-  _addRegion = () => {
-
+  _addRegion = (e) => {
+    console.log(e.target.value)
+    this.setState({
+      region: e.target.value
+    })
   }
 
-  _addPassword = () => {
-    
+  _addPassword = (e) => {
+    console.log(e.target.value)
+    this.setState({
+      password: e.target.value
+    })
+  }
+
+  _confirmPassword = (e) => {
+    console.log(e.target.value)
+    this.setState({
+       confirmed: e.target.value 
+    })
+  }
+  _handleSubmit = (e) => {
+    let output = {
+      userName: this.state.userName,
+      region: this.state.region,
+      password: this.state.password,
+      confirmed: this.state.confirmed
+
+    }
+    window.fetch('/user/new', {
+      method: 'POST',
+      body: JSON.stringify(
+        output
+      ),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    // .then(resp => resp.json())
+    //   .then((json) => {
+    //    console.log(json)
+    //   })
+      .catch(err => console.log(err))
+    console.log(output)
+    this.props.register(output)
+    this.props.modalIsClosed()
   }
   render() {
     return (
@@ -73,10 +117,12 @@ class RegisterModal extends React.Component {
           <button onClick={this.closeModal}>close</button>
           
           <form>
-            <input placeholder="userName" onChange={this._addUserName}/>
-            <input placeholder="region" />
-            <input placeholder="email"/>
-            <button>submit</button>
+            <input placeholder="User Name" onChange={this._addUserName}/>
+            <input placeholder="Region" onChange={this._addRegion}/>
+            <input placeholder="Email" onChange={this._addEmail}/>
+            <input type="password" placeholder="Password" onChange={this._addPassword}/>
+            <input type="password" placeholder="confirm Password"onChange={this._confirmPassword}/>
+            <a onClick={this._handleSubmit}>submit</a>
 
           </form>
         </Modal>

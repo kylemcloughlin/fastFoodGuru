@@ -12,9 +12,12 @@ class UserPage extends Component {
         modalIsOpen: true
       })
 
-      console.log(this.state.modalIsOpen)
+
     }
-      
+    _confirmReview = (obj) => {
+      console.log('user page', obj)
+      this.props.sendToBack(obj);
+    }
     _closeModal = () => {
       console.log('clsoe modal')
        this.setState({
@@ -26,7 +29,7 @@ render() {
     <div>
       <h1>User Page</h1>
       <button onClick={this._createReview}>Create</button>
-      <ReviewModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this._closeModal}/>
+      <ReviewModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this._closeModal} confirmReview={this._confirmReview}/>
     </div>
   )
 }

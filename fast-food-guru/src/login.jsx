@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
 import RegisterModal from './registerModal.jsx'
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: null,
+      pw: null,
       modalIsOpen: false
     }
   }
   _handleUserName = (event) => {
-    if (event.keyCode == 13 && event.target.value) {
         console.log('hit')
         this.setState({
           user: event.target.value
@@ -18,17 +17,15 @@ class Login extends Component {
         // console.log(this)
       console.log(`${this.state.user}`)
     
-    }
+   
   }
   _handlePassword = (event) => {
-    if (event.keyCode == 13 && event.target.value) {
-      let output = {pw: event.target.value,
-      user: this.state.user}
-      console.log('hit')
-      this.props.user(output)
-      console.log()
+    this.setState({
+      pw: event.target.value
+    })
+     
       
-    }
+    
   }
   _register = () => {
    console.log('hit')
@@ -37,6 +34,31 @@ class Login extends Component {
   closeModal = () => {
     this.setState({ modalIsOpen: false });
   }
+  _confirmRegistration = (obj) => {
+    console.log('login', obj)
+    this.props.user(obj);
+  }
+  _login = () => {
+    let output = {
+      user: this.state.user,
+      pw: this.state.pw
+    }
+    window.fetch('session/create', {
+      method: 'POST',
+      body: JSON.stringify(
+        output
+      ),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(resp => resp.json())
+        .then((json) => {
+         console.log(json)
+        })
+      .catch(err => console.log(err))
+    console.log('hit')
+    this.props.user(output)
+    console.log()
+    }
   componentDidMount() {
     console.log('component did mount');
     
@@ -47,14 +69,15 @@ class Login extends Component {
       <body>
        <form>
        <h2>User Name:</h2>
-          <input className="user" onKeyDown={this._handleUserName} >
+          <input className="user" onChange={this._handleUserName} >
         </input>
           <h2>Password:</h2>          
-          <input type="password" name="pw"className="password" onKeyDown={this._handlePassword}>
+          <input type="password" name="pw"className="password" onChange={this._handlePassword}>
           </input>
+          <a onClick={this._login}>submit</a>
        </form>
         <button onClick={this._register}>register</button>
-        <RegisterModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this.closeModal}/>
+        <RegisterModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this.closeModal} register={this._confirmRegistration}/>
       </body>
     )
     
