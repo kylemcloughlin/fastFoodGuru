@@ -19,7 +19,7 @@ const customStyles = {
 class ReviewModal extends React.Component {
   constructor(props) {
     super(props);
-
+    console.log("$$$$$$$$$$$$", props)
     this.state = {
       restaurant: null,
       address: null,
@@ -63,10 +63,12 @@ class ReviewModal extends React.Component {
   }
 
   _handleSubmit = (e) => {
+    console.log("$$$$$$$$$$$$", this.props)
     let output = {
       address: this.state.address,
       restaurant: this.state.restaurant,
-      review: this.state.review
+      review: this.state.review,
+      user: this.props.user
     }
     window.fetch('review/create', {
       method: 'POST',

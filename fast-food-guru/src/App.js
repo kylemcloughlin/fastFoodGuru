@@ -10,6 +10,7 @@ class App extends Component {
     super(props)
     this.state = {
       loggedIn: false,
+      user: null
     };
 
   }
@@ -20,11 +21,16 @@ class App extends Component {
     })
   } 
   _writeReview = (e) => {
-  
     console.log('hit')
   }
-_sendReg = (obj) => {
-  console.log("app", obj);
+_sendName = (obj) => {
+  console.log("#######################")
+  console.log(obj)
+  console.log()
+
+  this.setState({
+    user: obj
+  })
 }
 _sendReview = (obj) => {
   console.log("app", obj);
@@ -58,7 +64,7 @@ render() {
       <h1>Fast Food Guru</h1>
         <p>
           { this.state.loggedIn ?
-           (<UserPage sendToBack={this._sendReview}/>) : ( <Login user={this.user} sendToBack={this._sendReg}/> ) }
+           (<UserPage sendToBack={this._sendReview} user={this.state.user}/>) : ( <Login user={this.user} sendToBack={this._sendName}/> ) }
         </p>
       
     

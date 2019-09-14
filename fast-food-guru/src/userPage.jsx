@@ -3,6 +3,7 @@ import ReviewModal from './reviewModal.jsx'
 class UserPage extends Component {
   constructor(props) {
     super(props)
+    console.log("#################&&&&^&^&^", props)
     this.state = {
       modalIsOpen: false
     }
@@ -25,11 +26,12 @@ class UserPage extends Component {
         })
    }
 render() {
+  
   return (
     <div>
       <h1>User Page</h1>
       <button onClick={this._createReview}>Create</button>
-      <ReviewModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this._closeModal} confirmReview={this._confirmReview}/>
+      <ReviewModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this._closeModal} confirmReview={this._confirmReview} user={this.props.user}/>
     </div>
   )
 }

@@ -79,7 +79,7 @@ class RegisterModal extends React.Component {
   }
   _handleSubmit = (e) => {
     let output = {
-      userName: this.state.userName,
+      user: this.state.userName,
       region: this.state.region,
       password: this.state.password,
       confirmed: this.state.confirmed
@@ -92,10 +92,10 @@ class RegisterModal extends React.Component {
       ),
       headers: { 'Content-Type': 'application/json' }
     })
-    // .then(resp => resp.json())
-    //   .then((json) => {
-    //    console.log(json)
-    //   })
+    .then(resp => resp.json())
+      .then((json) => {
+       console.log(json)
+      })
       .catch(err => console.log(err))
     console.log(output)
     this.props.register(output)

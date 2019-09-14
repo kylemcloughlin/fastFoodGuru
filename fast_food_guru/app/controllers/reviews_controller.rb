@@ -1,16 +1,25 @@
 class ReviewsController < ApplicationController
-  def new
-  end
   def create
     puts "############CREATED REVIEW##########"
-    @reviews = {"1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5}
-    render json: @reviews
+    restaurant  = params[:restaurant]
+    address = params[:address]
+    review = params[:review]
+    @user = User.find_by name:params[:user]
+
+    @review =  Review.new(
+      restaurant: restaurant, address: address, 
+      review: review, user_id: @user.id
+    )
+     
+      @reviews = Review.all.order(created_at: :desc)
+      render json: @reviews if @review.save 
   end
   def destroy
   end
   def index 
     puts "############index##########"
-    @reviews = {"1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5}
+    @reviews = Review.all.order(created_at: :desc)
+ 
     render json: @reviews
   end
   def update

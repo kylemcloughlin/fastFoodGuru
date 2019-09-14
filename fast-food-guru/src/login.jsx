@@ -52,7 +52,7 @@ class Login extends Component {
     })
       .then(resp => resp.json())
         .then((json) => {
-         console.log(json)
+         this.props.sendToBack(output.user)
         })
       .catch(err => console.log(err))
     console.log('hit')
