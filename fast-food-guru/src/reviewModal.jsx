@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-
+import Geocode from "react-geocode";
+Geocode.setApiKey("AIzaSyDSZy_muaB5hzAf8NYwyuM3JCj0AT2tH4s");
 const customStyles = {
   content: {
     top: '50%',
@@ -63,7 +64,15 @@ class ReviewModal extends React.Component {
   }
 
   _handleSubmit = (e) => {
-    console.log("$$$$$$$$$$$$", this.props)
+    Geocode.fromAddress(`${this.state.address}, Toronto, ON, Canada`).then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(lat, lng);
+      },
+      error => {
+        console.error(error);
+      }
+    );
     let output = {
       address: this.state.address,
       restaurant: this.state.restaurant,
@@ -104,6 +113,7 @@ class ReviewModal extends React.Component {
           <h2 ref={subtitle => this.subtitle = subtitle}>Write Review</h2>
           <button onClick={this.closeModal}>close</button>
           <form>
+         
             <input name="restaurant" placeholder="restaurant" onChange={this._handleRestaurant}/>
             <input name="" placeholder="Address" onChange={this._handleAddress}/>
             <textarea placeholder="Review" onChange={this._handleText}></textarea>
@@ -114,5 +124,7 @@ class ReviewModal extends React.Component {
     );
   }
 }
+
+
 
 export default ReviewModal;

@@ -11,6 +11,11 @@ class SearchBar extends React.Component {
   }
 
   componentDidMount() {
+    const searchOptions = {
+      location: new google.maps.LatLng(-34, 151),
+      radius: 2000,
+      types: ['address']
+    }
     this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput.current,
       { "types": ["geocode"] });
 
@@ -19,7 +24,7 @@ class SearchBar extends React.Component {
 
   handlePlaceChanged() {
     const place = this.autocomplete.getPlace();
-    this.props.onPlaceLoaded(place);
+    // this.props.onPlaceLoaded(place);
   }
 
 

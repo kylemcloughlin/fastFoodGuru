@@ -10,7 +10,8 @@ class App extends Component {
     super(props)
     this.state = {
       loggedIn: false,
-      user: null
+      user: null,
+      reviews: null
     };
 
   }
@@ -40,7 +41,9 @@ _sendReview = (obj) => {
      .then(response => {
        if (response.ok) {
          response.json().then(data => {
-           console.log(data)
+           this.setState({
+             reviews: data
+           })
          })
 
        }
@@ -48,13 +51,10 @@ _sendReview = (obj) => {
      .catch(err => console.log('parsing failed', err))
 
  }
- componentDidUpdate() {
-  console.log("hit cdm") 
-  if (this.state.loggedIn === true) {
-  console.log("hit if")
-     
+ componentDidMount() {
+
     this.fetchData();
-   }
+  
  }
 render() {
 
@@ -64,7 +64,7 @@ render() {
       <h1>Fast Food Guru</h1>
         <p>
           { this.state.loggedIn ?
-           (<UserPage sendToBack={this._sendReview} user={this.state.user}/>) : ( <Login user={this.user} sendToBack={this._sendName}/> ) }
+           (<UserPage sendToBack={this._sendReview} user={this.state.user} reviews={this.state.reviews}/>) : ( <Login user={this.user} sendToBack={this._sendName}/> ) }
         </p>
       
     

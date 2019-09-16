@@ -17,7 +17,8 @@ ActiveRecord::Schema.define(version: 2019_09_13_204023) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "restaurant"
-    t.float "address"
+    t.float "lat"
+    t.float "lng"
     t.string "review"
     t.bigint "user_id"
     t.datetime "created_at", null: false

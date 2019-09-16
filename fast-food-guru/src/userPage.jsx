@@ -1,5 +1,6 @@
 import React, {  Component} from 'react';
 import ReviewModal from './reviewModal.jsx'
+import MapComponent from './mapComponent.jsx';
 class UserPage extends Component {
   constructor(props) {
     super(props)
@@ -31,6 +32,7 @@ render() {
     <div>
       <h1>User Page</h1>
       <button onClick={this._createReview}>Create</button>
+     <MapComponent reviews={this.props.reviews}/>
       <ReviewModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this._closeModal} confirmReview={this._confirmReview} user={this.props.user}/>
     </div>
   )
