@@ -3,6 +3,7 @@ import React, {
   Component
 } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import MarkerModal from './markerModal.jsx'
 // import SearchBar from './searchBar.jsx'
 const mapStyles = {
   width: '50%',
@@ -12,8 +13,17 @@ class MapComponent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      reviews: []
+      reviews: [],
+      currentReview: null,
+      modal: false
     }
+  }
+  handleMarkerModal = (review) => {
+      this.setState({ modal: false, currentReview: review });
+      
+      console.log(review)
+      this.setState({ modal: true });
+
   }
 
   componentDidMount() {
@@ -21,6 +31,11 @@ class MapComponent extends Component {
       reviews: this.props.reviews
       })
   }
+  componentWillReceiveProps(nextProps) {
+  this.setState({
+    reviews: nextProps.reviews
+  });
+}
   render() {
     return (
       <div>
@@ -32,11 +47,16 @@ class MapComponent extends Component {
         initialCenter={{ lat: 43.651070, lng: -79.347015 }}
         > 
         {this.state.reviews.map (review => {
-         return ( <Marker position={new google.maps.LatLng(review.lat, review.lng)}/> )
+          return (<Marker position={new google.maps.LatLng(review.lat, review.lng)} onClick={this.handleMarkerModal.bind(this, review)}/> )
         })
-
         }
         </Map>
+        {this.state.modal ? (
+          <MarkerModal
+          modalIsOpen={this.state.modal} modalIsClosed={() => {this.setState({modal: false})}} review={this.state.currentReview}/>
+        ) : (
+            <h1></h1>
+          )}
         </div>
     );
   }

@@ -25,7 +25,8 @@ class RegisterModal extends React.Component {
       region: null,
       email: null,
       password: null,
-      confirmed: null
+      confirmed: null,
+      file: null
     };
 
     // this.openModal = this.openModal.bind(this);
@@ -82,7 +83,7 @@ class RegisterModal extends React.Component {
       user: this.state.userName,
       region: this.state.region,
       password: this.state.password,
-      confirmed: this.state.confirmed
+      confirmed: this.state.confirmed,
 
     }
     window.fetch('/user/new', {
@@ -97,7 +98,7 @@ class RegisterModal extends React.Component {
        console.log(json)
       })
       .catch(err => console.log(err))
-    console.log(output)
+    console.log("boop", output)
     this.props.register(output)
     this.props.modalIsClosed()
   }

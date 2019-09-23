@@ -1,12 +1,14 @@
 import React, {  Component} from 'react';
 import ReviewModal from './reviewModal.jsx'
 import MapComponent from './mapComponent.jsx';
+import MarkerModal from './markerModal.jsx'
 class UserPage extends Component {
   constructor(props) {
     super(props)
     console.log("#################&&&&^&^&^", props)
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      reviews : this.props.reviews
     }
   }
     _createReview = () => {
@@ -26,14 +28,21 @@ class UserPage extends Component {
             modalIsOpen: false
         })
    }
+   _reviews = (reviews) => {
+     this.setState({
+       reviews: reviews
+     })
+     console.log(this.state.reviews)
+   } 
 render() {
   
   return (
     <div>
       <h1>User Page</h1>
       <button onClick={this._createReview}>Create</button>
-     <MapComponent reviews={this.props.reviews}/>
-      <ReviewModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this._closeModal} confirmReview={this._confirmReview} user={this.props.user}/>
+     <MapComponent reviews={this.state.reviews}/>
+      <ReviewModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this._closeModal}
+       confirmReview={this._confirmReview} user={this.props.user} setReviews={this._reviews}/>
     </div>
   )
 }

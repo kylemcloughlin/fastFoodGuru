@@ -66,19 +66,31 @@ class ReviewModal extends React.Component {
   _handleSubmit = (e) => {
     Geocode.fromAddress(`${this.state.address}, Toronto, ON, Canada`).then(
       response => {
-        const { lat, lng } = response.results[0].geometry.location;
-        console.log(lat, lng);
+          console.log("hit geocode")
+         this.setState({
+          lat: response.results[0].geometry.location.lat,
+           lng: response.results[0].geometry.location.lng
+ 
+         })
+
+         this.handleFetch();
+      
       },
       error => {
         console.error(error);
       }
     );
+  }
+   handleFetch = () => {
     let output = {
-      address: this.state.address,
+      lat: this.state.lat,
+      lng: this.state.lng,
       restaurant: this.state.restaurant,
       review: this.state.review,
       user: this.props.user
     }
+    console.log("hit b4 fetch")
+    
     window.fetch('review/create', {
       method: 'POST',
       body: JSON.stringify(
@@ -88,13 +100,17 @@ class ReviewModal extends React.Component {
     })
       .then(resp => resp.json())
       .then((json) => {
-        console.log(json)
+        console.log("hit fetch")
+       
+        this.props.setReviews(json)
       })
       .catch(err => console.log(err))
-    console.log(output)
+
     this.props.confirmReview(output)
     this.props.modalIsClosed();
   }
+
+
   componentWillMount() {
     Modal.setAppElement('body')
   }
