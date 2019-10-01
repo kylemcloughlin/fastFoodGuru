@@ -1,15 +1,22 @@
 class ReviewsController < ApplicationController
   def create
     puts "############CREATED REVIEW##########"
-    restaurant  = params[:restaurant]
+    restaurant = params[:restaurant]
     lat = params[:lat]
     lng = params[:lng]
     review = params[:review]
-    
+    cs = params[:CS]
+    cleanliness = params[:cleanliness]
+    freshness = params[:freshness]
+    quality = params[:quality]
+    speed = params[:speed]
+    byebug
     @user = User.find_by name:params[:user]
     
     @review =  Review.new(
-      restaurant: restaurant, lat: lat, lng: lng, 
+      restaurant: restaurant, lat: lat, lng: lng, cs: cs, 
+      cleanliness: cleanliness, freshness: freshness, 
+      quality: quality, speed: speed,
       review: review, user_id: @user.id
     )
      

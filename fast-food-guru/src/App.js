@@ -3,8 +3,8 @@ import React, {
 } from 'react';
 import Login from './login.jsx';
 import './App.css';
-import MapComponent from './mapComponent.jsx';
 import UserPage from './userPage.jsx'
+import RegisterModal from './registerModal.jsx'
 class App extends Component {
   constructor(props) {;
     super(props)
@@ -15,6 +15,17 @@ class App extends Component {
     };
 
   }
+   _register = () => {
+     console.log('hit')
+     this.setState({
+       modalIsOpen: true
+     });
+   }
+   closeModal = () => {
+     this.setState({
+       modalIsOpen: false
+     });
+   }
   user = (message) => {
     console.log("app", message);
     this.setState({
@@ -61,15 +72,23 @@ render() {
   return (
     <div className="App">
       <header className="App-header">
-      <h1>Fast Food Guru</h1>
-        <p>
+      <div className="header-css-help">
+         <h1 id="header-title"> <a className="first-letter">F</a>ast <a className="first-letter">F</a>ood <a className="first-letter">G</a>uru</h1>
+        <button id="header-reg" className="button" onClick={this._register}>register</button>
+      </div>
+      </header>
+        <body className="App-body">
+
           { this.state.loggedIn ?
            (<UserPage sendToBack={this._sendReview} user={this.state.user} reviews={this.state.reviews}/>) : ( <Login user={this.user} sendToBack={this._sendName}/> ) }
-        </p>
+        
+           <RegisterModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this.closeModal} register={this.user}/>
+           </body>
       
     
-
-      </header>
+  
+        <footer className="App-footer"/>
+  
     </div>
   );
 }

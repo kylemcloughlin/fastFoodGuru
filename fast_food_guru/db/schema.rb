@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 2019_09_13_204023) do
     t.float "lat"
     t.float "lng"
     t.string "review"
+    t.integer "cs"
+    t.integer "cleanliness"
+    t.integer "freshness"
+    t.integer "quality"
+    t.integer "speed"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,6 +34,10 @@ ActiveRecord::Schema.define(version: 2019_09_13_204023) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password"
+    t.string "city"
+    t.string "prov_or_state"
+    t.string "country"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

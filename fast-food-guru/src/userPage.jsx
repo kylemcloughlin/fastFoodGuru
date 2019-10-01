@@ -40,7 +40,7 @@ render() {
     <div>
       <h1>User Page</h1>
       <button onClick={this._createReview}>Create</button>
-     <MapComponent reviews={this.state.reviews}/>
+     <MapComponent className="map" reviews={this.state.reviews}/>
       <ReviewModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this._closeModal}
        confirmReview={this._confirmReview} user={this.props.user} setReviews={this._reviews}/>
     </div>

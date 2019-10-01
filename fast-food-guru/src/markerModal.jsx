@@ -6,6 +6,8 @@ const customStyles = {
   content: {
     top: '50%',
     left: '50%',
+    width: "58%",
+    height: "50%",
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
@@ -32,7 +34,6 @@ class MarkerModal extends React.Component {
   }
 
   afterOpenModal() {
-
     this.subtitle.style.color = '#f00';
   }
 
@@ -57,9 +58,19 @@ class MarkerModal extends React.Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <button onClick={this.closeModal}>close</button>
-          <h1>{this.props.review.restaurant}</h1>
+          <button className="close" onClick={this.closeModal}>close</button>
+          <h1 classNam="title" ref={subtitle => this.subtitle = subtitle}>{this.props.review.restaurant}</h1>
         <div>  
+            <label>Cleanliness: </label>
+            <span>{this.props.review.cleanliness} </span>
+            <label>Freshness: </label>
+            <span>{this.props.review.freshness} </span>
+            <label>Quality: </label>
+            <span>{this.props.review.quality} </span>
+            <label>Speed: </label>
+            <span>{this.props.review.speed} </span>
+            <label>Customer Service: </label>
+            <span>{this.props.review.cs} </span>
             {/* <p>{this.state.address}</p> */}
           <p>{this.props.review.review}</p>
         </div>

@@ -38,7 +38,9 @@ class MapComponent extends Component {
 }
   render() {
     return (
-      <div>
+     <div className="map-wrapper">
+
+     <div className="map-div">
  
       <Map
         google={this.props.google}
@@ -49,15 +51,16 @@ class MapComponent extends Component {
         {this.state.reviews.map (review => {
           return (<Marker position={new google.maps.LatLng(review.lat, review.lng)} onClick={this.handleMarkerModal.bind(this, review)}/> )
         })
-        }
+      }
         </Map>
+        </div>
         {this.state.modal ? (
           <MarkerModal
           modalIsOpen={this.state.modal} modalIsClosed={() => {this.setState({modal: false})}} review={this.state.currentReview}/>
-        ) : (
+          ) : (
             <h1></h1>
-          )}
-        </div>
+            )}
+            </div>
     );
   }
 }

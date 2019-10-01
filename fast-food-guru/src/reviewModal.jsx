@@ -9,6 +9,8 @@ const customStyles = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
+    width: "58%",
+    height: "50%",
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)'
   }
@@ -24,7 +26,12 @@ class ReviewModal extends React.Component {
     this.state = {
       restaurant: null,
       address: null,
-      review: null
+      review: null,
+      CS: 10,
+      cleanliness: 10,
+      freshness: 10,
+      quality: 10,
+      speed: 10
     };
 
     // this.openModal = this.openModal.bind(this);
@@ -63,6 +70,9 @@ class ReviewModal extends React.Component {
     })
   }
 
+
+
+
   _handleSubmit = (e) => {
     Geocode.fromAddress(`${this.state.address}, Toronto, ON, Canada`).then(
       response => {
@@ -81,16 +91,22 @@ class ReviewModal extends React.Component {
       }
     );
   }
+
+
    handleFetch = () => {
     let output = {
       lat: this.state.lat,
       lng: this.state.lng,
       restaurant: this.state.restaurant,
       review: this.state.review,
-      user: this.props.user
+      user: this.props.user,
+      CS: this.state.CS,
+      cleanliness: this.state.cleanliness,
+      freshness: this.state.freshness,
+      quality: this.state.quality,
+      speed: this.state.speed
+
     }
-    console.log("hit b4 fetch")
-    
     window.fetch('review/create', {
       method: 'POST',
       body: JSON.stringify(
@@ -100,8 +116,7 @@ class ReviewModal extends React.Component {
     })
       .then(resp => resp.json())
       .then((json) => {
-        console.log("hit fetch")
-       
+
         this.props.setReviews(json)
       })
       .catch(err => console.log(err))
@@ -125,15 +140,37 @@ class ReviewModal extends React.Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-
-          <h2 ref={subtitle => this.subtitle = subtitle}>Write Review</h2>
-          <button onClick={this.closeModal}>close</button>
-          <form>
+          <div className="modal-head-wrap">
+          <h2 className="modal-title" ref={subtitle => this.subtitle = subtitle}>Write Review</h2>
+          <button className="close" onClick={this.closeModal}>close</button>
+          </div>
          
-            <input name="restaurant" placeholder="restaurant" onChange={this._handleRestaurant}/>
-            <input name="" placeholder="Address" onChange={this._handleAddress}/>
-            <textarea placeholder="Review" onChange={this._handleText}></textarea>
-            <a onClick={this._handleSubmit}>Submit</a>
+          <form className="modal-form">
+         
+            <input className="reg-input" name="restaurant" placeholder="restaurant" onChange={this._handleRestaurant}/>
+            <input className="reg-input" name="" placeholder="Address" onChange={this._handleAddress}/>
+           <div className="ranger">
+              <label>Customer Service: {this.state.CS}</label>
+              <input className="reg-range" name="Customer Service" type="range" min="0" max="10" onChange={(e) => { this.setState({ CS: e.target.value }) }}/>
+            </div>              
+              <div className="ranger">
+            <label>Cleanliness: {this.state.cleanliness}</label>            
+            <input className="reg-range" name="Cleanliness" type="range" min="0" max="10" onChange={(e) => { this.setState({cleanliness: e.target.value})}}/>
+            </div>
+            <div className="ranger">
+            <label>Quality: {this.state.quality}</label>            
+              <input className="reg-range" name="Quality" type="range" min="0" max="10" onChange={(e) => { this.setState({ Quality: e.target.value }) }}/>
+            </div>
+            <div className="ranger">
+            <label>Freshness: {this.state.freshness}</label>            
+              <input className="reg-range" name="Freshness" type="range" min="0" max="10" onChange={(e) => { this.setState({ freshness: e.target.value }) }}/>
+            </div>
+            <div className="ranger">
+            <label>Speed: {this.state.speed}</label>           
+              <input className="reg-range" name="Speed" type="range" min="0" max="10" onChange={(e) => { this.setState({ speed: e.target.value }) }}/>
+           </div>
+            <textarea className="review-body" placeholder="Review" onChange={this._handleText}></textarea>
+            <a id="rev-submit" className="button" onClick={this._handleSubmit}>Submit</a>
           </form>
         </Modal>
       </div>

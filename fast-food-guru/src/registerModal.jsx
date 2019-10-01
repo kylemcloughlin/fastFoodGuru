@@ -6,6 +6,8 @@ const customStyles = {
   content: {
     top: '50%',
     left: '50%',
+    width: "58%",
+    height: "50%",
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
@@ -22,22 +24,21 @@ class RegisterModal extends React.Component {
 
     this.state = {
       userName: null,
-      region: null,
       email: null,
       password: null,
       confirmed: null,
-      file: null
+      file: null,
+      city: null,
+      provOrState: null,
+      country: null
     };
 
-    // this.openModal = this.openModal.bind(this);
+    
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-  // openModal() {
-  //   // this.setState({ modalIsOpen: true });
-  // }
-
+ 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#f00';
@@ -58,13 +59,25 @@ class RegisterModal extends React.Component {
       userName: e.target.value
     })
   }
-  _addRegion = (e) => {
+  _addCity = (e) => {
     console.log(e.target.value)
     this.setState({
-      region: e.target.value
+      city: e.target.value
+    })
+  }
+  _addProvOrState = (e) => {
+    this.setState({
+      provOrState: e.target.value
     })
   }
 
+  _addCountry = (e) => {
+      console.log(e.target.value)
+      this.setState({
+        country: e.target.value
+      })
+    
+  }
   _addPassword = (e) => {
     console.log(e.target.value)
     this.setState({
@@ -81,7 +94,9 @@ class RegisterModal extends React.Component {
   _handleSubmit = (e) => {
     let output = {
       user: this.state.userName,
-      region: this.state.region,
+      city: this.state.city,
+      provOrState: this.state.provOrState,
+      country: this.state.country,
       password: this.state.password,
       confirmed: this.state.confirmed,
 
@@ -113,17 +128,20 @@ class RegisterModal extends React.Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-
-          <h2 ref={subtitle => this.subtitle = subtitle}>Register</h2>
-          <button onClick={this.closeModal}>close</button>
+          <div className="modal-head-wrap">
+            <h2 className="modal-title" ref={subtitle => this.subtitle = subtitle}>Register</h2>
+            <button className="close" onClick={this.closeModal}>close</button>
+          </div>
           
-          <form>
-            <input placeholder="User Name" onChange={this._addUserName}/>
-            <input placeholder="Region" onChange={this._addRegion}/>
-            <input placeholder="Email" onChange={this._addEmail}/>
-            <input type="password" placeholder="Password" onChange={this._addPassword}/>
-            <input type="password" placeholder="confirm Password"onChange={this._confirmPassword}/>
-            <a onClick={this._handleSubmit}>submit</a>
+          <form className="modal-form">
+            <input id="top" className="reg-input" placeholder="User Name" onChange={this._addUserName}/>
+            <input className="reg-input" placeholder="City" onChange={this._addCity}/>
+            <input className="reg-input" placeholder="Province or State" onChange={this._addProvOrState}/>
+            <input className="reg-input" placeholder="Country" onChange={this._addCountry}/>
+            <input className="reg-input"  placeholder="Email" onChange={this._addEmail}/>
+            <input className="reg-input" type="password" placeholder="Password" onChange={this._addPassword}/>
+            <input className="reg-input" type="password" placeholder="confirm Password"onChange={this._confirmPassword}/>
+            <a id="reg-submit" className="button" onClick={this._handleSubmit}>submit</a>
 
           </form>
         </Modal>

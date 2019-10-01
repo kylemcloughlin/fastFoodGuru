@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RegisterModal from './registerModal.jsx'
+// import RegisterModal from './registerModal.jsx'
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -27,17 +27,17 @@ class Login extends Component {
       
     
   }
-  _register = () => {
-   console.log('hit')
-    this.setState({ modalIsOpen: true });
-  }
+  // _register = () => {
+  //  console.log('hit')
+  //   this.setState({ modalIsOpen: true });
+  // }
   closeModal = () => {
     this.setState({ modalIsOpen: false });
   }
-  _confirmRegistration = (obj) => {
-    console.log('login', obj)
-    this.props.user(obj);
-  }
+  // _confirmRegistration = (obj) => {
+  //   console.log('login', obj)
+  //   this.props.user(obj);
+  // }
   _login = () => {
     let output = {
       user: this.state.user,
@@ -66,19 +66,24 @@ class Login extends Component {
   render() {
     console.log('login render')
     return (
-      <body>
+    <div className="login-wrapper">
+
+    <div className="login-div">
        <form>
-       <h2>User Name:</h2>
+       <h2 className="input-header">User Name:</h2>
           <input className="user" onChange={this._handleUserName} >
         </input>
-          <h2>Password:</h2>          
-          <input type="password" name="pw"className="password" onChange={this._handlePassword}>
+            <h2 className="input-header">Password:</h2>          
+          <input type="password" name="pw" className="password-form" onChange={this._handlePassword}>
           </input>
-          <a onClick={this._login}>submit</a>
+         <div className="css-helper">
+          <a className="button" onClick={this._login}>submit</a>
+         </div>
        </form>
-        <button onClick={this._register}>register</button>
-        <RegisterModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this.closeModal} register={this._confirmRegistration}/>
-      </body>
+        {/* <button className="button" onClick={this._register}>register</button>
+        <RegisterModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this.closeModal} register={this._confirmRegistration}/> */}
+      </div>
+    </div>
     )
     
   }
