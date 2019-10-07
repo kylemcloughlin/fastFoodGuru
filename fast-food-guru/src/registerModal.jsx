@@ -7,7 +7,7 @@ const customStyles = {
     top: '50%',
     left: '50%',
     width: "58%",
-    height: "50%",
+    height: "60%",
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
@@ -138,10 +138,9 @@ class RegisterModal extends React.Component {
             <input className="reg-input" placeholder="City" onChange={this._addCity}/>
             <input className="reg-input" placeholder="Province or State" onChange={this._addProvOrState}/>
             <input className="reg-input" placeholder="Country" onChange={this._addCountry}/>
-            <input className="reg-input"  placeholder="Email" onChange={this._addEmail}/>
             <input className="reg-input" type="password" placeholder="Password" onChange={this._addPassword}/>
             <input className="reg-input" type="password" placeholder="confirm Password"onChange={this._confirmPassword}/>
-            <a id="reg-submit" className="button" onClick={this._handleSubmit}>submit</a>
+            <button id="reg-submit" className="button" onClick={this._handleSubmit}>submit</button>
 
           </form>
         </Modal>

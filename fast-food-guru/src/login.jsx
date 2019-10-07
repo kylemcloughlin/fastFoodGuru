@@ -71,17 +71,15 @@ class Login extends Component {
     <div className="login-div">
        <form>
        <h2 className="input-header">User Name:</h2>
-          <input className="user" onChange={this._handleUserName} >
+          <input className="login-input" onChange={this._handleUserName} >
         </input>
             <h2 className="input-header">Password:</h2>          
-          <input type="password" name="pw" className="password-form" onChange={this._handlePassword}>
+          <input type="password" name="pw" className="login-input" onChange={this._handlePassword}>
           </input>
          <div className="css-helper">
-          <a className="button" onClick={this._login}>submit</a>
+          <button id="login-button" className="button" onClick={this._login}>submit</button>
          </div>
        </form>
-        {/* <button className="button" onClick={this._register}>register</button>
-        <RegisterModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this.closeModal} register={this._confirmRegistration}/> */}
       </div>
     </div>
     )

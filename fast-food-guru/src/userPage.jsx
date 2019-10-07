@@ -1,7 +1,7 @@
 import React, {  Component} from 'react';
 import ReviewModal from './reviewModal.jsx'
 import MapComponent from './mapComponent.jsx';
-import MarkerModal from './markerModal.jsx'
+import TopFive from './topFive.jsx';
 class UserPage extends Component {
   constructor(props) {
     super(props)
@@ -37,12 +37,12 @@ class UserPage extends Component {
 render() {
   
   return (
-    <div>
-      <h1>User Page</h1>
-      <button onClick={this._createReview}>Create</button>
+    <div className="user-page">
+      <button onClick={this._createReview} id="create-review" className="button">Write New Review</button>
      <MapComponent className="map" reviews={this.state.reviews}/>
       <ReviewModal modalIsOpen={this.state.modalIsOpen} modalIsClosed={this._closeModal}
        confirmReview={this._confirmReview} user={this.props.user} setReviews={this._reviews}/>
+      <TopFive reviews={this.state.reviews} />
     </div>
   )
 }

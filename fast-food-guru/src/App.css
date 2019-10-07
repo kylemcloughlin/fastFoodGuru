@@ -1,8 +1,10 @@
 .App {
+  height: 60em;
   text-align: center;
-  height: 47em;
 }
-
+#button-text {
+  font-weight: 500
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -10,36 +12,45 @@
 }
 
 .App-header {
-  position: relative;
-  height: 4em;
-  background-color: #d9d9d9;
-  display: flex;
-  align-items: center;
-  font-size: calc(10px + 1.3vmin);
-  color: white;
+    display: flex;
+
 }
 .header-css-help {
-  display: inline;
+  text-align: center;
   width: 100%;
+  height: 5em;
+  background-color: darkcyan;
+
+
 }
 
 
 
 #header-title {
-  float: left;
+ 
   margin-left: 0.5em;
+ font-family: 'Pacifico',
+ cursive;
 }
 
 #header-reg {
   float: right;
-  margin-top: 2em;
-  height: 5em;
+  position: absolute;
+  top: 4px;
+  right: 0;
   margin-right: 1em;
   
 }
-
+#header-reg:hover {
+    opacity: 1;
+}
 /* login csss */
-
+#create-review {
+  margin-top: 0.5em;
+}
+#create-review:hover {
+  opacity: 1;
+}
 .login-wrapper {
   text-align: center;
 }
@@ -48,29 +59,50 @@
   display: inline-block;
   width: 30em;
   margin-top: 1em;
-  height: 13em;
+  height: 20em;
   border-radius: 1em;
 }
-
+#login-button {
+  margin-top: 0.8em;
+}
+#login-button:hover {
+  opacity: 1;
+}
 .button {
     border-style: solid;
     border-width: 1px;
-    background-color: black;
-    height: 1em;
-    width: 19em;
+    /* background-color: black; */
+      height: 3em;
+      width: 7em;
+      font-size: x-large;
     padding: 3px;
+    border-radius: 1.5em;
+    font-family: 'Raleway',
+    sans-serif;
+    opacity: .7;
 }
 
 .css-helper {
   margin: 0;
-  background-color: transparent;
+  /* background-color: transparent; */
   text-align: center;
 }
 .input-header {
   color: azure;
+  font-family: 'Poppins',
+  sans-serif;
   font-size: 20px
+  
 }
+.login-input {
+    width: 65%;
+    height: 2em;
+    font-size: inherit;
+    border-radius: 2em;
+    border: solid;
+    
 
+}
 .password-form {
   margin-bottom: 1em;
 }
@@ -78,12 +110,23 @@
 /* modal stylez */
 
 .reg-input {
+  order: solid;
   width: 85%;
+  height: 2em;
   margin: 0.5em;
+  border: soli;
+  border-width: 1px;
+  border-radius: 2em;
+  padding-left: 0.5em;
+  font-family: 'Raleway',
+    sans-serif;
+ font-weight: bold;
+ font-size: inherit;
 }
 
 #top {
   margin-top: 1em;
+  margin-right: 2em;
 }
 
 .modal-head-wrap {
@@ -91,11 +134,22 @@
 }
 .modal-title{
   float: left;
+   font-family: 'Pacifico',
+   cursive;
 }
 .close {
-  float: right;
+    float: right;
+    width: 15%;
+    /* background-color: red; */
+    height: 2em;
+    border-radius: 5px;
+    font-weight: 900;
+ font-family: 'Raleway',
+ sans-serif;
+ }
+.close:hover {
+  background-color: red;
 }
-
 .modal-form {
   margin-top: 5em;
   margin-left: 2em;
@@ -107,7 +161,10 @@ margin-top: 1em;
 text-align: center;
 padding: 9px;
 width: 9em;
-height: 1em;
+height: 2em;
+position: fixed;
+left: 33%;
+margin-top: 91px;
 }
 
 
@@ -120,6 +177,13 @@ margin-left: 1em;
   width: 85%;
   height: 15em;
   margin-left: 0.5em;
+      border-radius: 2em;
+      padding-left: 1.5em;
+      padding-top: 7px;
+      font-family: 'Raleway',
+      sans-serif;
+      font-weight: bold;
+      font-size: inherit;
 
 }
 .ranger {
@@ -131,7 +195,7 @@ margin-left: 1em;
   text-align: center;
   padding: 9px;
   width: 9em;
-  height: 1em;
+  height: 2em;
 }
 
 /* map component */
@@ -144,4 +208,144 @@ margin-left: 1em;
 
 }
 
+
+.top-five{
+   position: relative;
+       margin-top: 30.8em;
+}
+
+
+#title-holder-topfive {
+  background-color: aliceblue;
+  border: 4px solid hsl(180, 41%, 38%);
+  border-radius: 2em;
+  font-family: 'Raleway',
+    sans-serif;
+}
+
+.top-five-buttons {
+       background-color: aliceblue;
+       border: 3px solid hsl(180, 41%, 38%);
+    width: 95%;
+    height: 2.5em;;
+       border-radius: 1em;
+           margin-top: 0.5em;
+    font-family: 'Raleway',
+    sans-serif;
+      padding-top: 1.5em;
+      margin-left: 0.28em;
+    
+
+  }
+
+  .top-five-buttons:hover {
+    background-color: hsl(180, 41%, 38%);
+  }
+
+.top-5-container {
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 18px 0;
+    width: 48%;
+    margin-left: 1em;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -14px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+}
 

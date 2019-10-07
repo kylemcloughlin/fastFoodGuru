@@ -49,6 +49,7 @@ class MarkerModal extends React.Component {
 
  
   render() {
+     let average = this.props.review.cs + this.props.review.speed + this.props.review.quality + this.props.review.freshness + this.props.review.cleanliness 
     return (
       <div>
 
@@ -71,6 +72,8 @@ class MarkerModal extends React.Component {
             <span>{this.props.review.speed} </span>
             <label>Customer Service: </label>
             <span>{this.props.review.cs} </span>
+            <label>average: </label>
+            <span>{this.props.review.average}</span>
             {/* <p>{this.state.address}</p> */}
           <p>{this.props.review.review}</p>
         </div>

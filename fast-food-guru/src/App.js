@@ -32,17 +32,20 @@ class App extends Component {
       loggedIn: true
     })
   } 
-  _writeReview = (e) => {
-    console.log('hit')
-  }
+  // _writeReview = (e) => {
+  //   console.log('hit')
+  // }
 _sendName = (obj) => {
   console.log("#######################")
   console.log(obj)
   console.log()
-
   this.setState({
     user: obj
   })
+}
+
+_logout = () => {
+  console.log(`${this.state.user}`)
 }
 _sendReview = (obj) => {
   console.log("app", obj);
@@ -73,10 +76,25 @@ render() {
     <div className="App">
       <header className="App-header">
       <div className="header-css-help">
-         <h1 id="header-title"> <a className="first-letter">F</a>ast <a className="first-letter">F</a>ood <a className="first-letter">G</a>uru</h1>
-        <button id="header-reg" className="button" onClick={this._register}>register</button>
+         <h1 id="header-title">Fast Food Guru</h1>
+    {
+      !this.state.loggedIn ? ( < button id = "header-reg"
+        className = "button"
+        onClick = {
+          this._register
+        } > <b id="button-text">
+             register 
+          </b>
+             </button>) : (<button id="header-reg" className="button" onClick={this._logout}>Log Out</button > )
+
+    } 
       </div>
       </header>
+
+
+
+
+
         <body className="App-body">
 
           { this.state.loggedIn ?
@@ -87,7 +105,7 @@ render() {
       
     
   
-        <footer className="App-footer"/>
+
   
     </div>
   );

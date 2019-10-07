@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2019_09_13_204023) do
     t.integer "freshness"
     t.integer "quality"
     t.integer "speed"
+    t.float "average"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

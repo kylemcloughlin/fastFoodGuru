@@ -94,6 +94,12 @@ class ReviewModal extends React.Component {
 
 
    handleFetch = () => {
+     let average = parseInt(this.state.CS) + parseInt(this.state.cleanliness) 
+     + parseInt(this.state.freshness) + parseInt(this.state.quality) + parseInt(this.state.speed)
+     console.log(average) 
+     average = average / 5
+     console.log("hit", average) 
+
     let output = {
       lat: this.state.lat,
       lng: this.state.lng,
@@ -104,7 +110,8 @@ class ReviewModal extends React.Component {
       cleanliness: this.state.cleanliness,
       freshness: this.state.freshness,
       quality: this.state.quality,
-      speed: this.state.speed
+      speed: this.state.speed,
+      average: average
 
     }
     window.fetch('review/create', {
@@ -159,7 +166,7 @@ class ReviewModal extends React.Component {
             </div>
             <div className="ranger">
             <label>Quality: {this.state.quality}</label>            
-              <input className="reg-range" name="Quality" type="range" min="0" max="10" onChange={(e) => { this.setState({ Quality: e.target.value }) }}/>
+              <input className="reg-range" name="Quality" type="range" min="0" max="10" onChange={(e) => { this.setState({ quality: e.target.value }) }}/>
             </div>
             <div className="ranger">
             <label>Freshness: {this.state.freshness}</label>            
@@ -170,7 +177,7 @@ class ReviewModal extends React.Component {
               <input className="reg-range" name="Speed" type="range" min="0" max="10" onChange={(e) => { this.setState({ speed: e.target.value }) }}/>
            </div>
             <textarea className="review-body" placeholder="Review" onChange={this._handleText}></textarea>
-            <a id="rev-submit" className="button" onClick={this._handleSubmit}>Submit</a>
+            <button id="rev-submit" className="button" onClick={this._handleSubmit}>Submit</button>
           </form>
         </Modal>
       </div>

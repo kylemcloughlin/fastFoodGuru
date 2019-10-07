@@ -16,3 +16,7 @@ code {
 html {
   overflow: hidden;
 }
+
+button {
+  font-weight: 300;
+}

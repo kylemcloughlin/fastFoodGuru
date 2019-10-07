@@ -30,7 +30,8 @@ class MapComponent extends Component {
     this.setState({
       reviews: this.props.reviews
       })
-  }
+      console.log(this.state.reviews)
+    }
   componentWillReceiveProps(nextProps) {
   this.setState({
     reviews: nextProps.reviews

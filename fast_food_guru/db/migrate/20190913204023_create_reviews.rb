@@ -10,6 +10,7 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.integer :freshness
       t.integer :quality
       t.integer :speed
+      t.float :average
       t.references :user, foreign_key: true
 
       t.timestamps
