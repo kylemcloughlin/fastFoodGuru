@@ -12,7 +12,9 @@ const customStyles = {
     width: "58%",
     height: "50%",
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: '#2f2e2e',
+  color: 'white'
   }
 };
 

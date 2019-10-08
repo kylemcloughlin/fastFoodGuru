@@ -13,6 +13,8 @@
 
 .App-header {
     display: flex;
+    background-color: #000000;
+    color: white;
 
 }
 .header-css-help {
@@ -55,7 +57,7 @@
   text-align: center;
 }
 .login-div {
-  background-color: aquamarine;
+  background-color: #3A8B8B;
   display: inline-block;
   width: 30em;
   margin-top: 1em;
@@ -71,7 +73,7 @@
 .button {
     border-style: solid;
     border-width: 1px;
-    /* background-color: black; */
+    background-color: black;
       height: 3em;
       width: 7em;
       font-size: x-large;
@@ -80,7 +82,8 @@
     font-family: 'Raleway',
     sans-serif;
     opacity: .7;
-}
+  color: white;
+  }
 
 .css-helper {
   margin: 0;
@@ -100,6 +103,7 @@
     font-size: inherit;
     border-radius: 2em;
     border: solid;
+    padding-left: 1em;
     
 
 }
@@ -126,7 +130,7 @@
 
 #top {
   margin-top: 1em;
-  margin-right: 2em;
+  margin-right: 4em;
 }
 
 .modal-head-wrap {
@@ -197,6 +201,10 @@ margin-left: 1em;
   width: 9em;
   height: 2em;
 }
+#rev-submit:hover  {
+  background-color: white;
+  color: #000000;
+}
 
 /* map component */
 .map-wrapper{
@@ -216,7 +224,8 @@ margin-left: 1em;
 
 
 #title-holder-topfive {
-  background-color: aliceblue;
+background-color: #2f2e2e;
+color: white;
   border: 4px solid hsl(180, 41%, 38%);
   border-radius: 2em;
   font-family: 'Raleway',
@@ -224,8 +233,9 @@ margin-left: 1em;
 }
 
 .top-five-buttons {
-       background-color: aliceblue;
-       border: 3px solid hsl(180, 41%, 38%);
+background-color: #2f2e2e;
+color: white;
+border: 3px solid hsl(180, 41%, 38%);
     width: 95%;
     height: 2.5em;;
        border-radius: 1em;
